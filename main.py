@@ -5,7 +5,6 @@ import re
 
 from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 from astrbot.api.star import Context, Star, register
-from astrbot.api.all import StarMetadata
 from astrbot.api import logger
 
 @register("hotupdate", "wzken", "一个用于热更新AstrBot插件的插件", "0.1.0", "https://github.com/wzken/astrbot_plugin_hot_update")
@@ -20,7 +19,7 @@ class HotUpdatePlugin(Star):
         pass
 
     @update_group.command("list")
-    async def list_updatable_plugins(self, event: AstrMessageEvent) -> MessageEventResult:
+    async def list_updatable_plugins(self, event: AstrMessageEvent):
         '''列出所有可更新的AstrBot插件。'''
         logger.info("Received /update list command.")
         self.updatable_plugins = [] # 清空之前的列表
@@ -59,7 +58,7 @@ class HotUpdatePlugin(Star):
         else:
             yield event.plain_result("所有插件都已是最新版本。")
 
-    async def _check_plugin_update(self, star_metadata: StarMetadata):
+    async def _check_plugin_update(self, star_metadata):
         """检查单个插件是否有GitHub更新。"""
         repo_url = star_metadata.repo_url
         match = re.search(r"github\.com/([^/]+)/([^/]+)", repo_url)
@@ -103,7 +102,7 @@ class HotUpdatePlugin(Star):
 
     @filter.permission_type(filter.PermissionType.ADMIN)
     @update_group.command("up")
-    async def update_plugin_command(self, event: AstrMessageEvent, indices_str: str) -> MessageEventResult:
+    async def update_plugin_command(self, event: AstrMessageEvent, indices_str: str):
         '''更新并重载指定编号的插件。支持同时更新多个插件，例如：/update up 1 3 5'''
         if not self.updatable_plugins:
             yield event.plain_result("没有可更新的插件列表，请先使用 /update list 命令。")
