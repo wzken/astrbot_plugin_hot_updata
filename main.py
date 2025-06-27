@@ -7,7 +7,7 @@ from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 from astrbot.api.star import Context, Star, register, StarMetadata
 from astrbot.api import logger
 
-@register("hotupdate", "YourName", "一个用于热更新AstrBot插件的插件", "0.1.0", "https://github.com/YourRepo/HotUpdatePlugin")
+@register("hotupdate", "wzken", "一个用于热更新AstrBot插件的插件", "0.1.0", "https://github.com/wzken/astrbot_plugin_hot_update")
 class HotUpdatePlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
