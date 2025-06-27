@@ -4,7 +4,8 @@ import json
 import re
 
 from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
-from astrbot.api.star import Context, Star, register, StarMetadata
+from astrbot.api.star import Context, Star, register
+from astrbot.api.all import StarMetadata
 from astrbot.api import logger
 
 @register("hotupdate", "wzken", "一个用于热更新AstrBot插件的插件", "0.1.0", "https://github.com/wzken/astrbot_plugin_hot_update")
