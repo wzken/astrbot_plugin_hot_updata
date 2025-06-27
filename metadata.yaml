@@ -1,0 +1,5 @@
+name: HotReloadPlugin
+author: YourName
+description: 一个用于热重载AstrBot插件的插件
+version: 0.1.0
+repo_url: https://github.com/YourRepo/HotReloadPlugin
